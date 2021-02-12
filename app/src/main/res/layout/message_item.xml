@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/messageTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        tools:text="10:00" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/senderMessageItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_margin="5dp"
+        app:cardBackgroundColor="@color/colorSenderCardViewBG"
+        app:cardCornerRadius="15dp">
+
+            <TextView
+                android:id="@+id/senderMessageText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="7dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+
+                android:textColor="@color/colorSenderFont"
+                tools:text="1\nΑΝΔΡΕΟΛΑΣ ΧΑΡΑΛΑΜΠΟΣ\nΣΠΕΤΣΩΝ 24, ΠΕΡΙΣΤΕΡΙ" />
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/ic_contact"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/receiverMessageItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="start|center"
+            android:layout_margin="5dp"
+            app:cardBackgroundColor="@color/colorReceiverCardViewBG"
+            app:cardCornerRadius="15dp">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/receiverMessageTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="7dp"
+                    android:layout_marginEnd="80dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="7dp"
+                    android:textColor="@color/black"
+                    tools:text="ΜΕΤΑΚΙΝΗΣΗ 1 ΑΝΔΡΕΟΛΑΣ \nΧΑΡΑΛΑΜΠΟΣ ΣΠΕΤΣΩΝ 24,\nΠΕΡΙΣΤΕΡΙ" />
+            </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/receiverMessageTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="70dp"
+        tools:text="10:00 &#xb7; via GR COSMOTE"/>
+</LinearLayout>

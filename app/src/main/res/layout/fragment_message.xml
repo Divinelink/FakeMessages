@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".messages.MessageFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_weight="0.08"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="?attr/colorAccent"
+        android:minHeight="?attr/actionBarSize"
+        app:menu="@menu/toolbar_menu"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        app:theme="@style/ToolbarTheme"
+        app:title="@string/receiver" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/messagesRV"
+        android:layout_weight="0.96"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:overScrollMode="never"
+        tools:itemCount="35" />
+
+    <EditText
+        android:id="@+id/sendMessageEditText"
+        android:layout_weight="0.08"
+        android:layout_width="300dp"
+        android:layout_height="0dp"
+        android:hint="Text (GR COSMOTE)"
+        android:layout_gravity="end"/>
+
+
+</LinearLayout>

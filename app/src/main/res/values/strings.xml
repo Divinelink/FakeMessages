@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">FakeMessages</string>
+    <string name="app_name">3Messages</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="upperDot">"\U+0358"</string>
+
+    <string name="receiver">"13033"</string>
+    <string name="changeDetails">Change Details</string>
 </resources>
