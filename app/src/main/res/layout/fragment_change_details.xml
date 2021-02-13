@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".details.ChangeDetailsFragment">
+
+    <TextView
+        android:id="@+id/changeDetailsTextView"
+        android:layout_width="wrap_content"
+        android:layout_margin="15dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        tools:text="TextView" />
+
+
+    <EditText
+        android:id="@+id/addressEditText"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:hint="Enter Address"
+        android:ems="10" />
+
+    <EditText
+        android:id="@+id/areaEditText"
+        android:layout_width="300dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:hint="Enter Area"
+        android:ems="10" />
+
+    <Button
+        android:id="@+id/addAddressBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="center"
+        android:text="Add Address"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/DetailsRV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

@@ -7,9 +7,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnimationUtils;
 
 import java.util.List;
 
@@ -18,11 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import fakemessages.divinelink.fakemessages.R;
 import fakemessages.divinelink.fakemessages.base.IHomeView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MessageFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class MessageFragment extends Fragment implements IMessageView {
 
     IHomeView homeView;
@@ -43,6 +38,7 @@ public class MessageFragment extends Fragment implements IMessageView {
         messagesRV = (RecyclerView) v.findViewById(R.id.messagesRV);
 
         mToolBar = (Toolbar) v.findViewById(R.id.toolbar);
+        mToolBar.setOnMenuItemClickListener(toolbarMenuClickListener);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         messagesRV.setLayoutManager(layoutManager);
@@ -85,4 +81,23 @@ public class MessageFragment extends Fragment implements IMessageView {
 
         }
     }
+
+    Toolbar.OnMenuItemClickListener toolbarMenuClickListener = new Toolbar.OnMenuItemClickListener() {
+        @Override
+        public boolean onMenuItemClick(MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.changeAddress:
+                    homeView.addChangeDetailsFragment("address");
+                    return true;
+                case R.id.changeName:
+                    homeView.addChangeDetailsFragment("name");
+                    return true;
+                case R.id.changeMessageCode:
+                    homeView.addChangeDetailsFragment("code");
+                    return true;
+                default:
+                    return false;
+            }
+        }
+    };
 }

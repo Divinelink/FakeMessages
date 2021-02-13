@@ -5,4 +5,6 @@ import java.io.Serializable;
 public interface IHomeView extends Serializable {
 
     void addMessageFragment();
+
+    void addChangeDetailsFragment(String details);
 }

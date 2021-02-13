@@ -7,4 +7,7 @@
 
     <string name="receiver">"13033"</string>
     <string name="changeDetails">Change Details</string>
+    <string name="changeAddress">Change Address</string>
+    <string name="changeMessage">Change Code</string>
+    <string name="changeName">Change Name</string>
 </resources>

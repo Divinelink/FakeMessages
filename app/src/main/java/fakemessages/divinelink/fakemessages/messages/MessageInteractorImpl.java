@@ -52,11 +52,7 @@ public class MessageInteractorImpl implements IMessageInteractor {
                             "6"));
                 }
 
-
-
-
-                SimpleDateFormat formatter = new SimpleDateFormat("HH:MM");
-
+                SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
 
                 messagesDao.insertMessage(new MessageDomain(formatter.format(new Date(System.currentTimeMillis() - 1800 * 1000)),
                         "ΑΝΔΡΕΟΛΑΣ ΧΑΡΑΛΑΜΠΟΣ",
