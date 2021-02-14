@@ -58,14 +58,17 @@ public class MessageRvAdapter extends RecyclerView.Adapter<MessageRvAdapter.Mess
 
         holder.messageTimeItem.setText(totalMessages.get(position).getMessageTime());
 
-        holder.senderMessageItem.setText(totalMessages.get(position).getMessageCode()
-                + "\n" + totalMessages.get(position).getUserName()
-                + "\n" + totalMessages.get(position).getUserAddress() +", " + totalMessages.get(position).getUserCity());
+        holder.senderMessageItem.setText(String.format("%s\n%s\n%s, %s",
+                totalMessages.get(position).getMessageCode(),
+                totalMessages.get(position).getUserName(),
+                totalMessages.get(position).getUserAddress(),
+                totalMessages.get(position).getUserCity()));
 
-        holder.receiverMessageItem.setText("ΜΕΤΑΚΙΝΗΣΗ " + totalMessages.get(position).getMessageCode()
-                + "\n" +  totalMessages.get(position).getUserName()
-                + "\n" + totalMessages.get(position).getUserAddress()
-                +", " + totalMessages.get(position).getUserCity());
+        holder.receiverMessageItem.setText(String.format("ΜΕΤΑΚΙΝΗΣΗ %s\n%s\n%s, %s",
+                totalMessages.get(position).getMessageCode(),
+                totalMessages.get(position).getUserName(),
+                totalMessages.get(position).getUserAddress(),
+                totalMessages.get(position).getUserCity()));
 
     }
 

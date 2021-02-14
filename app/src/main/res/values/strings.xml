@@ -1,13 +1,19 @@
 <resources>
-    <string name="app_name">3Messages</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">Messages</string>
 
     <string name="upperDot">"\U+0358"</string>
 
     <string name="receiver">"13033"</string>
-    <string name="changeDetails">Change Details</string>
-    <string name="changeAddress">Change Address</string>
-    <string name="changeMessage">Change Code</string>
-    <string name="changeName">Change Name</string>
+    <string name="changeDetails">Edit Details</string>
+    <string name="changeAddress">Edit Address</string>
+    <string name="changeMessage">Edit Code</string>
+    <string name="changeName">Edit Name</string>
+    <string name="your_addresses">Your Addresses</string>
+    <string name="add_address">Add Address</string>
+    <string name="enter_area">Enter Area</string>
+    <string name="enter_address">Enter Address</string>
+    <string name="cancel">Cancel</string>
+    <string name="set_address">Set Address</string>
+    <string name="remove_address">Remove Address?</string>
+    <string name="remove">Remove</string>
 </resources>

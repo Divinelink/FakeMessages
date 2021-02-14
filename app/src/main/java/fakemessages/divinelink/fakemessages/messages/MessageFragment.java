@@ -72,7 +72,6 @@ public class MessageFragment extends Fragment implements IMessageView {
         if (getActivity() != null) {
             getActivity().runOnUiThread(new Runnable() {
                 final MessageRvAdapter messageRvAdapter = new MessageRvAdapter(messages, getActivity());
-
                 @Override
                 public void run() {
                     messagesRV.setAdapter(messageRvAdapter);

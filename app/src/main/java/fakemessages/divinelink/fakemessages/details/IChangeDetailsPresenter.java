@@ -8,4 +8,8 @@ public interface IChangeDetailsPresenter {
 
     void saveAddress(Context ctx, String address, String area);
 
+    void changeCurrentAddress(Context ctx, AddressDomain address);
+
+    void removeAddress(Context ctx, AddressDomain address);
+
 }

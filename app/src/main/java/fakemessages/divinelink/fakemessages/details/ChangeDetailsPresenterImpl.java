@@ -2,8 +2,14 @@ package fakemessages.divinelink.fakemessages.details;
 
 import android.content.Context;
 
+import java.util.List;
 
-public class ChangeDetailsPresenterImpl implements IChangeDetailsPresenter, IChangeDetailsInteractor.OnGetAddressFinishListener, IChangeDetailsInteractor.onSaveAddressFinishListener{
+
+public class ChangeDetailsPresenterImpl implements IChangeDetailsPresenter,
+        IChangeDetailsInteractor.OnRemoveAddressFinishListener,
+        IChangeDetailsInteractor.OnGetAddressFinishListener,
+        IChangeDetailsInteractor.onSaveAddressFinishListener,
+        IChangeDetailsInteractor.onSetNewAddressFinishListener{
 
     private final IChangeDetailsView detailsView;
     private final IChangeDetailsInteractor interactor;
@@ -13,10 +19,6 @@ public class ChangeDetailsPresenterImpl implements IChangeDetailsPresenter, ICha
         interactor = new ChangeDetailsInteractorImpl();
     }
 
-    @Override
-    public void onSuccess() {
-
-    }
 
     @Override
     public void onError() {
@@ -24,8 +26,13 @@ public class ChangeDetailsPresenterImpl implements IChangeDetailsPresenter, ICha
     }
 
     @Override
-    public void getAddresses(Context ctx) {
+    public void onSuccess(List<AddressDomain> addresses) {
+        detailsView.showAddresses(addresses);
+    }
 
+    @Override
+    public void getAddresses(Context ctx) {
+        interactor.getAddressesFromDB(this, ctx);
     }
 
     @Override
@@ -34,7 +41,27 @@ public class ChangeDetailsPresenterImpl implements IChangeDetailsPresenter, ICha
     }
 
     @Override
-    public void onSuccessSave(AddressDomain newAddress) {
-        detailsView.changeCurrentAddress(newAddress);
+    public void onSuccessSave(List<AddressDomain> addresses) {
+        detailsView.changeCurrentAddress(addresses);
+    }
+
+    @Override
+    public void changeCurrentAddress(Context ctx, AddressDomain address) {
+        interactor.setNewAddress(this, ctx, address);
+    }
+
+    @Override
+    public void onSuccessSet() {
+
+    }
+
+    @Override
+    public void onSuccessRemoval(int position) {
+        detailsView.showUpdatedAddresses(position);
+    }
+
+    @Override
+    public void removeAddress(Context ctx, AddressDomain address) {
+        interactor.removeAddressFromDB(this, ctx, address);
     }
 }

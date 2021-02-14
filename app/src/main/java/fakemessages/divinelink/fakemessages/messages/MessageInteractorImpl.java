@@ -1,7 +1,9 @@
 package fakemessages.divinelink.fakemessages.messages;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -10,64 +12,75 @@ import java.util.List;
 
 import fakemessages.divinelink.fakemessages.R;
 import fakemessages.divinelink.fakemessages.base.HomeDatabase;
+import fakemessages.divinelink.fakemessages.base.IGetSharedPrefManager;
 
-public class MessageInteractorImpl implements IMessageInteractor {
+public class MessageInteractorImpl implements IMessageInteractor, IGetSharedPrefManager {
 
     @Override
     public void getMessagesFromDB(final OnGetMessagesFinishListener listener, final Context ctx) {
-
 
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
 
                 final MessagesDao messagesDao = HomeDatabase.getDatabase(ctx).messagesDao();
-
-                messagesDao.deleteAll();
-
                 final List<MessageDomain> messages = messagesDao.getMessages();
+                SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
 
                 if (messages.size() == 0) {
                     // Time, senderMessageText, receiverMessageText
                     messagesDao.insertMessage(new MessageDomain("Sun, 14:21",
                             "ΑΝΔΡΕΟΛΑΣ ΧΑΡΑΛΑΜΠΟΣ",
-                            "ΣΠΕΤΣΩΝ 24",
-                            "ΠΕΡΙΣΤΕΡΙ",
+                            getAddressSharedPref(ctx),
+                            getAreaSharedPref(ctx),
                             "6"));
                     messagesDao.insertMessage(new MessageDomain("Mon, 12:44",
                             "ΑΝΔΡΕΟΛΑΣ ΧΑΡΑΛΑΜΠΟΣ",
-                            "ΣΠΕΤΣΩΝ 24",
-                            "ΠΕΡΙΣΤΕΡΙ",
+                            getAddressSharedPref(ctx),
+                            getAreaSharedPref(ctx),
                             "2"));
-
                     messagesDao.insertMessage(new MessageDomain("Yesterday, 09:15",
                             "ΑΝΔΡΕΟΛΑΣ ΧΑΡΑΛΑΜΠΟΣ",
-                            "ΣΠΕΤΣΩΝ 24",
-                            "ΠΕΡΙΣΤΕΡΙ",
+                            getAddressSharedPref(ctx),
+                            getAreaSharedPref(ctx),
                             "6"));
                     messagesDao.insertMessage(new MessageDomain("Yesterday, 16:56",
                             "ΑΝΔΡΕΟΛΑΣ ΧΑΡΑΛΑΜΠΟΣ",
-                            "ΣΠΕΤΣΩΝ 24",
-                            "ΠΕΡΙΣΤΕΡΙ",
+                            getAddressSharedPref(ctx),
+                            getAreaSharedPref(ctx),
+                            "6"));
+                    messagesDao.insertMessage(new MessageDomain(formatter.format(new Date(System.currentTimeMillis() - 1800 * 1000)),
+                            "ΑΝΔΡΕΟΛΑΣ ΧΑΡΑΛΑΜΠΟΣ",
+                            getAddressSharedPref(ctx),
+                            getAreaSharedPref(ctx),
+                            "6"));
+                }
+                else
+                {
+                    messagesDao.updateLastMessage(messages.get(messages.size()-1),
+                            new MessageDomain(formatter.format(new Date(System.currentTimeMillis() - 1800 * 1000)),
+                            "ΑΝΔΡΕΟΛΑΣ ΧΑΡΑΛΑΜΠΟΣ",
+                            getAddressSharedPref(ctx),
+                            getAreaSharedPref(ctx),
                             "6"));
                 }
 
-                SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
 
-                messagesDao.insertMessage(new MessageDomain(formatter.format(new Date(System.currentTimeMillis() - 1800 * 1000)),
-                        "ΑΝΔΡΕΟΛΑΣ ΧΑΡΑΛΑΜΠΟΣ",
-                        "ΣΠΕΤΣΩΝ 24",
-                        "ΠΕΡΙΣΤΕΡΙ",
-                        "6"));
 
                 listener.onSuccess(messagesDao.getMessages());
-
             }
-
         });
     }
 
-    private void addMessagesToDB() {
+    @Override
+    public String getAddressSharedPref(Context ctx) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+        return preferences.getString("address", "ΣΠΕΤΣΩΝ 25");
+    }
 
+    @Override
+    public String getAreaSharedPref(Context ctx) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+        return preferences.getString("area", "ΑΙΓΑΛΕΩ");
     }
 }

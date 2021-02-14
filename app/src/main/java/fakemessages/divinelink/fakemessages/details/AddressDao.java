@@ -19,5 +19,8 @@ public abstract class AddressDao {
     @Query("DELETE FROM Addresses")
     abstract void deleteAll();
 
+    @Query("DELETE FROM Addresses WHERE id=:id")
+    abstract void delete(int id);
+
 
 }

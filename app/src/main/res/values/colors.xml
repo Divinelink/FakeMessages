@@ -12,6 +12,8 @@
     <color name="colorSenderCardViewBG">#9EC9DD</color>
     <color name="colorSenderFont">#004C88</color>
 
+    <color name="addressRecyclerViewColor">#E7F5FF</color>
+
     <color name="colorReceiverCardViewBG">#EBF1F4</color>
 
     <color  name="contactBackGround">#8BC34A</color>
