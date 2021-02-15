@@ -68,6 +68,7 @@ public class ChangeDetailsFragment extends Fragment implements IChangeDetailsVie
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         View v = inflater.inflate(R.layout.fragment_change_details, container, false);
 
         mDetailsTextView = (TextView) v.findViewById(R.id.changeDetailsTextView);
@@ -92,9 +93,9 @@ public class ChangeDetailsFragment extends Fragment implements IChangeDetailsVie
                 presenter.saveAddress(getContext(), mAddressEditText.getText().toString(), mAreaEditText.getText().toString());
             }
         });
-        if (details.equals("address")) {
+
             presenter.getAddresses(getContext());
-        }
+
         return v;
     }
 

@@ -75,6 +75,7 @@ public class MessageFragment extends Fragment implements IMessageView {
                 @Override
                 public void run() {
                     messagesRV.setAdapter(messageRvAdapter);
+                    messagesRV.smoothScrollToPosition(messages.size());
                 }
             });
 
@@ -89,7 +90,7 @@ public class MessageFragment extends Fragment implements IMessageView {
                     homeView.addChangeDetailsFragment("address");
                     return true;
                 case R.id.changeName:
-                    homeView.addChangeDetailsFragment("name");
+                    homeView.addChangeNameFragment("name");
                     return true;
                 case R.id.changeMessageCode:
                     homeView.addChangeDetailsFragment("code");

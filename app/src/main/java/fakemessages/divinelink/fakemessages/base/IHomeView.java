@@ -7,4 +7,6 @@ public interface IHomeView extends Serializable {
     void addMessageFragment();
 
     void addChangeDetailsFragment(String details);
+
+    void addChangeNameFragment(String name);
 }
