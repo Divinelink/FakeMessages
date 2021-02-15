@@ -9,7 +9,7 @@ public class ChangeDetailsPresenterImpl implements IChangeDetailsPresenter,
         IChangeDetailsInteractor.OnRemoveAddressFinishListener,
         IChangeDetailsInteractor.OnGetAddressFinishListener,
         IChangeDetailsInteractor.onSaveAddressFinishListener,
-        IChangeDetailsInteractor.onSetNewAddressFinishListener{
+        IChangeDetailsInteractor.onSetNewAddressFinishListener {
 
     private final IChangeDetailsView detailsView;
     private final IChangeDetailsInteractor interactor;
@@ -19,10 +19,9 @@ public class ChangeDetailsPresenterImpl implements IChangeDetailsPresenter,
         interactor = new ChangeDetailsInteractorImpl();
     }
 
-
     @Override
-    public void onError() {
-
+    public void getAddresses(Context ctx) {
+        interactor.getAddressesFromDB(this, ctx);
     }
 
     @Override
@@ -30,11 +29,7 @@ public class ChangeDetailsPresenterImpl implements IChangeDetailsPresenter,
         detailsView.showAddresses(addresses);
     }
 
-    @Override
-    public void getAddresses(Context ctx) {
-        interactor.getAddressesFromDB(this, ctx);
-    }
-
+    // -- SAVE ADDRESS -- \\
     @Override
     public void saveAddress(Context ctx, String address, String area) {
         interactor.saveAddressOnDB(this, ctx, address, area);
@@ -42,9 +37,12 @@ public class ChangeDetailsPresenterImpl implements IChangeDetailsPresenter,
 
     @Override
     public void onSuccessSave(List<AddressDomain> addresses) {
-        detailsView.changeCurrentAddress(addresses);
+        detailsView.showInsertedAddress(addresses);
     }
 
+    // -- END SAVE ADDRESS -- \\
+
+    // -- SET NEW ADDRESS -- \\
     @Override
     public void changeCurrentAddress(Context ctx, AddressDomain address) {
         interactor.setNewAddress(this, ctx, address);
@@ -54,14 +52,35 @@ public class ChangeDetailsPresenterImpl implements IChangeDetailsPresenter,
     public void onSuccessSet() {
 
     }
+    // -- END NEW ADDRESS -- \\
+
+    // -- REMOVE ADDRESS -- \\
+    @Override
+    public void removeAddress(Context ctx, AddressDomain address, int position) {
+        interactor.removeAddressFromDB(this, ctx, address, position);
+    }
 
     @Override
     public void onSuccessRemoval(int position) {
-        detailsView.showUpdatedAddresses(position);
+        detailsView.showRemovedAddress(position);
+    }
+
+    // -- END REMOVE ADDRESS -- \\
+
+
+    @Override
+    public void onFieldsEmpty(AddressDomain address) {
+        if (address.getAddress().equals("") && address.getArea().equals(""))
+            detailsView.showEmptyFieldsWarning();
+        else if (address.getArea().equals(""))
+            detailsView.showEmptyFieldWarning("Area");
+        else if (address.getAddress().equals(""))
+            detailsView.showEmptyFieldWarning("Address");
     }
 
     @Override
-    public void removeAddress(Context ctx, AddressDomain address) {
-        interactor.removeAddressFromDB(this, ctx, address);
+    public void onError() {
+
     }
+
 }

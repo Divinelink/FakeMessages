@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "Addresses")
 public class AddressDomain {
 
-    @PrimaryKey (autoGenerate = true)
+    @PrimaryKey
     private int id;
 
     private String address;

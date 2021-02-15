@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.provider.Telephony;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +42,6 @@ public class ChangeDetailsFragment extends Fragment implements IChangeDetailsVie
     private EditText mAddressEditText, mAreaEditText;
     private RecyclerView detailsRV;
     private Button mAddAddressBtn;
-
 
     private IChangeDetailsPresenter presenter;
 
@@ -95,40 +95,20 @@ public class ChangeDetailsFragment extends Fragment implements IChangeDetailsVie
         if (details.equals("address")) {
             presenter.getAddresses(getContext());
         }
-
-
         return v;
     }
 
     @Override
-    public void showUpdatedAddresses(int position) {
-        if (getActivity() != null) {
-            getActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    detailsRV.getAdapter().notifyDataSetChanged();
-                }
-            });
-        }
-    }
-
-    @Override
-    public void changeCurrentAddress(final List<AddressDomain> addresses) {
+    public void showInsertedAddress(final List<AddressDomain> addresses) {
 
         if (getActivity() != null) {
             getActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(getContext(),
-                            "New Address is: " + addresses.get(addresses.size() - 1).getAddress()
-                                    + " " + addresses.get(addresses.size() - 1).getArea(),
-                            Toast.LENGTH_SHORT).show();
-
                     mAddressEditText.getText().clear();
                     mAreaEditText.getText().clear();
-
-                    detailsRV.getAdapter().notifyDataSetChanged();
-
+                    detailRvAdapter.setTotalAddresses(addresses);
+                    detailsRV.getAdapter().notifyItemInserted(addresses.size() - 1);
                 }
             });
         }
@@ -139,59 +119,97 @@ public class ChangeDetailsFragment extends Fragment implements IChangeDetailsVie
 
         if (getActivity() != null) {
             getActivity().runOnUiThread(new Runnable() {
-                final ChangeDetailsRvAdapter detailRvAdapter = new ChangeDetailsRvAdapter(addresses, new OnAddressClickListener() {
-                    @Override
-                    public void onAddressClick(AddressDomain address, int position) {
-                        new MaterialAlertDialogBuilder(getContext())
-                                .setTitle(R.string.set_address)
-                                .setMessage(String.format("Set %s, %s as your current address?",
-                                        addresses.get(position).getAddress(),
-                                        addresses.get(position).getArea()))
-                                .setPositiveButton(R.string.set_address, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                                        presenter.changeCurrentAddress(getContext(), address);
-
-                                    }
-                                })
-                                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                                    }
-                                })
-                                .show();
-                    }
-                    @Override
-                    public void onAddressLongClick(AddressDomain address, int position) {
-                        new MaterialAlertDialogBuilder(getContext())
-                                .setTitle(R.string.remove_address)
-                                .setMessage(String.format("Are you sure you want to delete %s, $s?",
-                                        addresses.get(position).getAddress(),
-                                        addresses.get(position).getArea()))
-                                .setPositiveButton(R.string.remove, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        presenter.removeAddress(getContext(), address);
-                                    }
-                                })
-                                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                                    }
-                                })
-                                .show();
-                    }
-                }, getActivity());
                 @Override
                 public void run() {
+                    detailRvAdapter.setTotalAddresses(addresses);
                     detailsRV.setAdapter(detailRvAdapter);
                 }
             });
         }
     }
 
+    @Override
+    public void showRemovedAddress(int position) {
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    detailRvAdapter.getTotalAddresses().remove(position); // remove address from adapter's list.
+                    detailRvAdapter.notifyItemRemoved(position);
+                    detailRvAdapter.notifyItemRangeChanged(position, detailRvAdapter.getTotalAddresses().size());
+                }
+            });
+        }
+    }
+
+    @Override
+    public void showEmptyFieldsWarning() {
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getContext(), "Address and Area fields should not be empty.", Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+    }
+
+    @Override
+    public void showEmptyFieldWarning(final String area) {
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getContext(), String.format("%s should not be empty.", area), Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+    }
+
+    private ChangeDetailsRvAdapter detailRvAdapter = new ChangeDetailsRvAdapter(new OnAddressClickListener() {
+        @Override
+        public void onAddressClick(AddressDomain address, int position) {
+            new MaterialAlertDialogBuilder(getContext())
+                    .setTitle(R.string.set_address)
+                    .setMessage(String.format("Set %s, %s as your current address?",
+                            address.getAddress(),
+                            address.getArea()))
+                    .setPositiveButton(R.string.set_address, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            presenter.changeCurrentAddress(getContext(), address);
+                        }
+                    })
+                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    })
+                    .show();
+        }
+
+        @Override
+        public void onAddressLongClick(AddressDomain address, int position) {
+            new MaterialAlertDialogBuilder(getContext())
+                    .setTitle(R.string.remove_address)
+                    .setMessage(String.format("Are you sure you want to delete %s, %s?",
+                            address.getAddress(),
+                            address.getArea()))
+                    .setPositiveButton(R.string.remove, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            presenter.removeAddress(getContext(), address, position);
+                        }
+                    })
+                    .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+
+                        }
+                    })
+                    .show();
+        }
+    }, getActivity());
 
 }

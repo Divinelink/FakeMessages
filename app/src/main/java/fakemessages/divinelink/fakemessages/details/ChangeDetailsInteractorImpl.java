@@ -32,7 +32,6 @@ public class ChangeDetailsInteractorImpl implements IChangeDetailsInteractor, IS
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
-                final AddressDao addressDao = HomeDatabase.getDatabase(ctx).addressDao();
                 final MessagesDao messageDao = HomeDatabase.getDatabase(ctx).messagesDao();
 
                 messageDao.updateAddress(address.getAddress());
@@ -47,17 +46,16 @@ public class ChangeDetailsInteractorImpl implements IChangeDetailsInteractor, IS
     }
 
     @Override
-    public void removeAddressFromDB(final OnRemoveAddressFinishListener listener, final Context ctx, final AddressDomain address) {
+    public void removeAddressFromDB(final OnRemoveAddressFinishListener listener, final Context ctx, final AddressDomain address, final int position) {
 
         AsyncTask.execute(new Runnable() {
             @Override
             public void run() {
                 final AddressDao addressDao = HomeDatabase.getDatabase(ctx).addressDao();
-                final List<AddressDomain> addresses = addressDao.getAddresses();
 
                 addressDao.delete(address.getId());
 
-                listener.onSuccessRemoval(addresses.indexOf(address));
+                listener.onSuccessRemoval(position);
             }
         });
     }
@@ -70,9 +68,15 @@ public class ChangeDetailsInteractorImpl implements IChangeDetailsInteractor, IS
             public void run() {
                 final AddressDao addressDao = HomeDatabase.getDatabase(ctx).addressDao();
                 final List<AddressDomain> addresses = addressDao.getAddresses();
-                addresses.add(new AddressDomain(address, area));
-                addressDao.insertAddress(new AddressDomain(address, area));
-                listener.onSuccessSave(addresses);
+
+                final AddressDomain newAddress = new AddressDomain(addressDao.getLatestID() + 1, address, area);
+
+                if (!address.equals("") && !area.equals("")) {
+                    addressDao.insertAddress(newAddress);
+                    addresses.add(newAddress);
+                    listener.onSuccessSave(addresses);
+                } else
+                    listener.onFieldsEmpty(new AddressDomain(address, area));
             }
         });
     }

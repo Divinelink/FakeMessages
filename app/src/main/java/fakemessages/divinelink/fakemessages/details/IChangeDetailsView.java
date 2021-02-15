@@ -4,10 +4,14 @@ import java.util.List;
 
 public interface IChangeDetailsView {
 
-    void changeCurrentAddress(List<AddressDomain> addressDomain);
+    void showInsertedAddress(List<AddressDomain> addressDomain);
+
+    void showRemovedAddress(int position);
 
     void showAddresses(List<AddressDomain> addresses);
 
-    void showUpdatedAddresses(int position);
+    void showEmptyFieldsWarning();
+
+    void showEmptyFieldWarning(String area);
 
 }

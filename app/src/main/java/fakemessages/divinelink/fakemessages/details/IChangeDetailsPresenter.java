@@ -10,6 +10,6 @@ public interface IChangeDetailsPresenter {
 
     void changeCurrentAddress(Context ctx, AddressDomain address);
 
-    void removeAddress(Context ctx, AddressDomain address);
+    void removeAddress(Context ctx, AddressDomain address, int position);
 
 }

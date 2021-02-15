@@ -17,15 +17,22 @@ import fakemessages.divinelink.fakemessages.R;
 public class ChangeDetailsRvAdapter extends RecyclerView.Adapter<ChangeDetailsRvAdapter.ChangeDetailsViewHolder> {
 
 
-    final private List<AddressDomain> totalAddresses;
+    private List<AddressDomain> totalAddresses;
     private OnAddressClickListener listener;
-    final private Context context;
+    private Context context;
 
 
-    public ChangeDetailsRvAdapter(List<AddressDomain> totalAddresses, OnAddressClickListener listener, Context context) {
-        this.totalAddresses = totalAddresses;
+    public ChangeDetailsRvAdapter(OnAddressClickListener listener, Context context) {
         this.listener = listener;
         this.context = context;
+    }
+
+    public void setTotalAddresses(List<AddressDomain> totalAddresses) {
+        this.totalAddresses = totalAddresses;
+    }
+
+    public List<AddressDomain> getTotalAddresses() {
+        return totalAddresses;
     }
 
     static class ChangeDetailsViewHolder extends RecyclerView.ViewHolder {
@@ -63,13 +70,13 @@ public class ChangeDetailsRvAdapter extends RecyclerView.Adapter<ChangeDetailsRv
             }
         });
 
-       holder.addressItemRoot.setOnLongClickListener(new View.OnLongClickListener() {
-           @Override
-           public boolean onLongClick(View view) {
-               listener.onAddressLongClick(totalAddresses.get(position), position);
-               return true;
-           }
-       });
+        holder.addressItemRoot.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                listener.onAddressLongClick(totalAddresses.get(position), position);
+                return true;
+            }
+        });
 
     }
 

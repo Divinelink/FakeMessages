@@ -1,5 +1,6 @@
 package fakemessages.divinelink.fakemessages.details;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.room.Dao;
@@ -15,6 +16,9 @@ public abstract class AddressDao {
 
     @Query("SELECT * FROM Addresses")
     public abstract List<AddressDomain> getAddresses();
+
+    @Query("SELECT id FROM Addresses ORDER BY id DESC LIMIT 1")
+    public abstract int getLatestID();
 
     @Query("DELETE FROM Addresses")
     abstract void deleteAll();

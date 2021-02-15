@@ -10,7 +10,7 @@ import fakemessages.divinelink.fakemessages.details.AddressDao;
 import fakemessages.divinelink.fakemessages.messages.MessageDomain;
 import fakemessages.divinelink.fakemessages.messages.MessagesDao;
 
-@Database(entities = {MessageDomain.class, AddressDomain.class}, version = 4, exportSchema = false)
+@Database(entities = {MessageDomain.class, AddressDomain.class}, version = 5, exportSchema = false)
 abstract public class HomeDatabase extends RoomDatabase {
 
     public abstract MessagesDao messagesDao();

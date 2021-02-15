@@ -9,7 +9,7 @@ public interface IChangeDetailsInteractor {
 
     void getAddressesFromDB (IChangeDetailsInteractor.OnGetAddressFinishListener listener, Context ctx);
 
-    void removeAddressFromDB(IChangeDetailsInteractor.OnRemoveAddressFinishListener listener, Context ctx, AddressDomain address);
+    void removeAddressFromDB(IChangeDetailsInteractor.OnRemoveAddressFinishListener listener, Context ctx, AddressDomain address, int position);
 
     void saveAddressOnDB (onSaveAddressFinishListener listener, Context ctx, String address, String area);
 
@@ -28,7 +28,7 @@ public interface IChangeDetailsInteractor {
     interface onSaveAddressFinishListener{
 
         void onSuccessSave(List<AddressDomain> addresses);
-        void onError();
+        void onFieldsEmpty(AddressDomain address);
 
     }
 
