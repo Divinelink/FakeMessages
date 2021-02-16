@@ -7,4 +7,7 @@ public interface IGetSharedPrefManager {
     String getAddressSharedPref(Context ctx);
 
     String getAreaSharedPref(Context ctx);
+
+    String getNameSharedPref(Context ctx);
 }
+

@@ -10,4 +10,5 @@ public interface ISetSharedPrefManager {
 
     void setAddress(Context ctx, AddressDomain address);
 
+
 }

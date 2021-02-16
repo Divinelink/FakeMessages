@@ -3,18 +3,20 @@ package fakemessages.divinelink.fakemessages.name;
 
 import android.content.Context;
 
-import java.util.List;
-
-import fakemessages.divinelink.fakemessages.details.AddressDomain;
-
 public interface IChangeNameInteractor {
 
-    void setNewName (OnGetNameChangeListener listener, Context ctx);
+    void setNewName(OnSetNameChangeListener listener, Context ctx, String name);
 
-    interface OnGetNameChangeListener{
+    void getNameFromSharedPref(OnGetNameChangeListener listener, Context ctx);
 
+    interface OnGetNameChangeListener {
+        void onSuccessGetName(String name);
+    }
+
+    interface OnSetNameChangeListener {
         void onSuccess();
-        void onError();
+
+        void onEmptyName();
 
     }
 }

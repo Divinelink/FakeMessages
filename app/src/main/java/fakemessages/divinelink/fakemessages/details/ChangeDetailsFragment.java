@@ -90,7 +90,7 @@ public class ChangeDetailsFragment extends Fragment implements IChangeDetailsVie
             @Override
             public void onClick(View view) {
                 //TODO Add warning when fields are empty.
-                presenter.saveAddress(getContext(), mAddressEditText.getText().toString(), mAreaEditText.getText().toString());
+                presenter.saveAddress(getContext(), mAddressEditText.getText().toString().toUpperCase(), mAreaEditText.getText().toString().toUpperCase());
             }
         });
 

@@ -100,4 +100,6 @@ public class MessageFragment extends Fragment implements IMessageView {
             }
         }
     };
+
+
 }

@@ -8,7 +8,7 @@ public interface IChangeNamePresenter {
 
     void getName(Context ctx);
 
-    void setName(Context ctx);
+    void setName(Context ctx, String name);
 
 
 }

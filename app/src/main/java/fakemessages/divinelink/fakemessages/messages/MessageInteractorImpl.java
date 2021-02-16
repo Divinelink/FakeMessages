@@ -30,41 +30,38 @@ public class MessageInteractorImpl implements IMessageInteractor, IGetSharedPref
                 if (messages.size() == 0) {
                     // Time, senderMessageText, receiverMessageText
                     messagesDao.insertMessage(new MessageDomain("Sun, 14:21",
-                            "ΑΝΔΡΕΟΛΑΣ ΧΑΡΑΛΑΜΠΟΣ",
+                            getNameSharedPref(ctx),
                             getAddressSharedPref(ctx),
                             getAreaSharedPref(ctx),
                             "6"));
                     messagesDao.insertMessage(new MessageDomain("Mon, 12:44",
-                            "ΑΝΔΡΕΟΛΑΣ ΧΑΡΑΛΑΜΠΟΣ",
+                            getNameSharedPref(ctx),
                             getAddressSharedPref(ctx),
                             getAreaSharedPref(ctx),
                             "2"));
                     messagesDao.insertMessage(new MessageDomain("Yesterday, 09:15",
-                            "ΑΝΔΡΕΟΛΑΣ ΧΑΡΑΛΑΜΠΟΣ",
+                            getNameSharedPref(ctx),
                             getAddressSharedPref(ctx),
                             getAreaSharedPref(ctx),
                             "6"));
                     messagesDao.insertMessage(new MessageDomain("Yesterday, 16:56",
-                            "ΑΝΔΡΕΟΛΑΣ ΧΑΡΑΛΑΜΠΟΣ",
+                            getNameSharedPref(ctx),
                             getAddressSharedPref(ctx),
                             getAreaSharedPref(ctx),
                             "6"));
                     messagesDao.insertMessage(new MessageDomain(formatter.format(new Date(System.currentTimeMillis() - 1800 * 1000)),
-                            "ΑΝΔΡΕΟΛΑΣ ΧΑΡΑΛΑΜΠΟΣ",
+                            getNameSharedPref(ctx),
                             getAddressSharedPref(ctx),
                             getAreaSharedPref(ctx),
                             "6"));
-                }
-                else
-                {
-                    messagesDao.updateLastMessage(messages.get(messages.size()-1),
+                } else {
+                    messagesDao.updateLastMessage(messages.get(messages.size() - 1),
                             new MessageDomain(formatter.format(new Date(System.currentTimeMillis() - 1800 * 1000)),
-                            "ΑΝΔΡΕΟΛΑΣ ΧΑΡΑΛΑΜΠΟΣ",
-                            getAddressSharedPref(ctx),
-                            getAreaSharedPref(ctx),
-                            "6"));
+                                    getNameSharedPref(ctx),
+                                    getAddressSharedPref(ctx),
+                                    getAreaSharedPref(ctx),
+                                    "6"));
                 }
-
 
 
                 listener.onSuccess(messagesDao.getMessages());
@@ -82,5 +79,11 @@ public class MessageInteractorImpl implements IMessageInteractor, IGetSharedPref
     public String getAreaSharedPref(Context ctx) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
         return preferences.getString("area", "ΑΙΓΑΛΕΩ");
+    }
+
+    @Override
+    public String getNameSharedPref(Context ctx) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
+        return preferences.getString("name", "ΛΕΩΝΙΔΑΣ ΤΡΙΑΝΤΑΦΥΛΛΟΣ");
     }
 }

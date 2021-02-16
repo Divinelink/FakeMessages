@@ -90,8 +90,9 @@ public class ChangeDetailsInteractorImpl implements IChangeDetailsInteractor, IS
     public void setAddress(Context ctx, AddressDomain address) {
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
         final SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("address", address.getAddress());
-        editor.putString("area", address.getArea());
+        editor.putString("address", address.getAddress().toUpperCase());
+        editor.putString("area", address.getArea().toUpperCase());
         editor.apply();
     }
+
 }
