@@ -9,5 +9,7 @@ public interface IGetSharedPrefManager {
     String getAreaSharedPref(Context ctx);
 
     String getNameSharedPref(Context ctx);
+
+    int getCodeSharedPref(Context ctx);
 }
 

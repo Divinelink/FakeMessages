@@ -32,6 +32,11 @@ public abstract class MessagesDao {
     @Query("UPDATE Messages SET userName = :newName")
     public abstract void updateName(String newName);
 
+    @Query("SELECT * FROM Messages ORDER BY id DESC LIMIT 1")
+    public abstract MessageDomain getLatestMessage();
+
+    @Query("SELECT * FROM Messages ORDER BY id DESC LIMIT 2")
+    public abstract List<MessageDomain> getLastTwoItems();
     @Transaction
     public void updateLastMessage(MessageDomain oldMessage, MessageDomain newMessage) {
         delete(oldMessage.getId());

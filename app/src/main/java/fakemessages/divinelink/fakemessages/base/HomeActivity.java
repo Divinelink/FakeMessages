@@ -3,6 +3,7 @@ package fakemessages.divinelink.fakemessages.base;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import fakemessages.divinelink.fakemessages.R;
+import fakemessages.divinelink.fakemessages.code.ChangeCodeFragment;
 import fakemessages.divinelink.fakemessages.details.ChangeDetailsFragment;
 import fakemessages.divinelink.fakemessages.messages.MessageFragment;
 import fakemessages.divinelink.fakemessages.name.ChangeNameFragment;
@@ -44,6 +45,16 @@ public class HomeActivity extends AppCompatActivity implements IHomeView {
                 .beginTransaction()
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .replace(R.id.homeRoot, ChangeNameFragment.newInstance(this, name))
+                .addToBackStack(null)
+                .commit();
+    }
+
+    @Override
+    public void addChangeCodeFragment() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .replace(R.id.homeRoot, ChangeCodeFragment.newInstance(this))
                 .addToBackStack(null)
                 .commit();
     }

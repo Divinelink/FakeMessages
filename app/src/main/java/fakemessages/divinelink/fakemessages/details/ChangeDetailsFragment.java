@@ -38,7 +38,6 @@ public class ChangeDetailsFragment extends Fragment implements IChangeDetailsVie
 
 
     IHomeView homeView;
-    private TextView mDetailsTextView;
     private EditText mAddressEditText, mAreaEditText;
     private RecyclerView detailsRV;
     private Button mAddAddressBtn;
@@ -71,7 +70,6 @@ public class ChangeDetailsFragment extends Fragment implements IChangeDetailsVie
 
         View v = inflater.inflate(R.layout.fragment_change_details, container, false);
 
-        mDetailsTextView = (TextView) v.findViewById(R.id.changeDetailsTextView);
         mAddressEditText = (EditText) v.findViewById(R.id.addressEditText);
         mAreaEditText = (EditText) v.findViewById(R.id.areaEditText);
 
@@ -80,9 +78,6 @@ public class ChangeDetailsFragment extends Fragment implements IChangeDetailsVie
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         detailsRV.setLayoutManager(layoutManager);
-
-        mDetailsTextView.setText(details);
-
 
         presenter = new ChangeDetailsPresenterImpl(this);
 

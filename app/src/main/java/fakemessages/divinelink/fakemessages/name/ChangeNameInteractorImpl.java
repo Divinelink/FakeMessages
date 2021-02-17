@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 
+import fakemessages.divinelink.fakemessages.R;
 import fakemessages.divinelink.fakemessages.base.HomeDatabase;
 import fakemessages.divinelink.fakemessages.base.IGetSharedPrefManager;
 import fakemessages.divinelink.fakemessages.messages.MessagesDao;
@@ -38,7 +39,7 @@ public class ChangeNameInteractorImpl implements IChangeNameInteractor {
     public void getNameFromSharedPref(OnGetNameChangeListener listener, Context ctx) {
 
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ctx);
-        listener.onSuccessGetName(preferences.getString("name", "ΛΕΩΝΙΔΑΣ ΤΡΙΑΝΤΑΦΥΛΛΟΣ"));
+        listener.onSuccessGetName(preferences.getString("name", ctx.getString(R.string.default_name)));
 
     }
 }

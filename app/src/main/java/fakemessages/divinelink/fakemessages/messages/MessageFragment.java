@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import java.util.List;
 
@@ -25,6 +26,8 @@ public class MessageFragment extends Fragment implements IMessageView {
 
     private Toolbar mToolBar;
 
+    private EditText mEditText;
+
     private IMessagePresenter presenter;
 
     @Override
@@ -39,6 +42,8 @@ public class MessageFragment extends Fragment implements IMessageView {
 
         mToolBar = (Toolbar) v.findViewById(R.id.toolbar);
         mToolBar.setOnMenuItemClickListener(toolbarMenuClickListener);
+
+        mEditText = (EditText) v.findViewById(R.id.sendMessageEditText);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         messagesRV.setLayoutManager(layoutManager);
@@ -93,7 +98,7 @@ public class MessageFragment extends Fragment implements IMessageView {
                     homeView.addChangeNameFragment("name");
                     return true;
                 case R.id.changeMessageCode:
-                    homeView.addChangeDetailsFragment("code");
+                    homeView.addChangeCodeFragment();
                     return true;
                 default:
                     return false;
