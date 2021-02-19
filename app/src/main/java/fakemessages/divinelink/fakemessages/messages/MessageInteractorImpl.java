@@ -73,7 +73,7 @@ public class MessageInteractorImpl implements IMessageInteractor, IGetSharedPref
             cal.add(Calendar.DATE, -i);
             String messageCode = (i % 3 == 0) ? "2" : "6";
             String date;
-            if (i != 0)
+            if (i > 0)
                 date = dateFormatter.format(cal.getTime()) + String.format(" %02d:%02d", HH, MM);
             else
                 date = timeFormatter.format(new Date(System.currentTimeMillis() - 1800 * 1000));

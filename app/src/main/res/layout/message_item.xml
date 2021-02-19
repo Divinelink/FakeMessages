@@ -38,7 +38,7 @@
     </androidx.cardview.widget.CardView>
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -46,42 +46,43 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center|bottom"
+            android:layout_marginBottom="5dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:background="@drawable/ic_contact"/>
+            android:background="@drawable/ic_contact" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/receiverMessageItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:layout_marginEnd="60dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="5dp"
             android:layout_gravity="start|center"
-            android:layout_margin="5dp"
             app:cardBackgroundColor="@color/colorReceiverCardViewBG"
             app:cardCornerRadius="15dp">
-
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
                 <TextView
                     android:id="@+id/receiverMessageTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="7dp"
-                    android:layout_marginEnd="60dp"
+                    android:layout_marginEnd="30dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginTop="7dp"
-                    android:textSize="16sp"
                     android:textColor="@color/black"
-                    tools:text="ΜΕΤΑΚΙΝΗΣΗ 1 ΑΝΔΡΕΟΛΑΣ \nΧΑΡΑΛΑΜΠΟΣ ΣΠΕΤΣΩΝ 24,\nΠΕΡΙΣΤΕΡΙ" />
+                    android:textSize="16sp"
+                    tools:text="ΜΕΤΑΚΙΝΗΣΗ 1 ΑΝΔΡΕΟΛΑΣ \nΧΑΡΑΛΑΜΠΟΣ KOYMOYNDOYROYOYOY 24, ΠΕΡΙΣΤΕΡΙ" />
             </LinearLayout>
 
-
         </androidx.cardview.widget.CardView>
+
+
     </LinearLayout>
     <TextView
         android:id="@+id/receiverMessageTime"

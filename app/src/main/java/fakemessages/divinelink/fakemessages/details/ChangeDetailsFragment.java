@@ -125,6 +125,18 @@ public class ChangeDetailsFragment extends Fragment implements IChangeDetailsVie
     }
 
     @Override
+    public void showSuccessMessage(AddressDomain address) {
+        if (getActivity() != null) {
+            getActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getContext(), String.format("%s, %s is set as your new adddress.", address.getAddress(), address.getArea()), Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+    }
+
+    @Override
     public void showRemovedAddress(int position) {
         if (getActivity() != null) {
             getActivity().runOnUiThread(new Runnable() {

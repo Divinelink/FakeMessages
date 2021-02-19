@@ -26,7 +26,7 @@
         android:id="@+id/messagesRV"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.88"
+        android:layout_weight="0.90"
         android:overScrollMode="never"
         tools:itemCount="30" />
 

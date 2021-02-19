@@ -14,6 +14,7 @@
         android:ems="10"
         android:hint="@string/fullname"
         android:inputType="textPersonName"
+        android:textCursorDrawable="@drawable/color_cursor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintHorizontal_bias="0.0"

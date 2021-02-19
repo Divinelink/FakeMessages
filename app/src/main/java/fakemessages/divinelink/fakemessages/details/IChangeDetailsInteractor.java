@@ -16,7 +16,7 @@ public interface IChangeDetailsInteractor {
     void setNewAddress (onSetNewAddressFinishListener listener, Context ctx, AddressDomain address);
 
     interface onSetNewAddressFinishListener{
-        void onSuccessSet();
+        void onSuccessSet(AddressDomain address);
         void onError();
     }
 

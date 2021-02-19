@@ -1,5 +1,7 @@
 package fakemessages.divinelink.fakemessages.details;
 
+import android.graphics.drawable.AnimationDrawable;
+
 import java.util.List;
 
 public interface IChangeDetailsView {
@@ -13,5 +15,7 @@ public interface IChangeDetailsView {
     void showEmptyFieldsWarning();
 
     void showEmptyFieldWarning(String area);
+
+    void showSuccessMessage(AddressDomain address);
 
 }

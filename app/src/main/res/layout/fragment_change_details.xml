@@ -13,6 +13,7 @@
         android:layout_marginBottom="5dp"
         android:layout_width="300dp"
         android:layout_gravity="center"
+        android:textCursorDrawable="@drawable/color_cursor"
         android:layout_height="wrap_content"
         android:hint="@string/enter_address"
         android:ems="10" />
@@ -23,6 +24,7 @@
         android:layout_gravity="center"
         android:layout_height="wrap_content"
         android:layout_marginBottom="5dp"
+        android:textCursorDrawable="@drawable/color_cursor"
         android:hint="@string/enter_area"
         android:ems="10"/>
 

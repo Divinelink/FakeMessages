@@ -39,7 +39,7 @@ public class ChangeDetailsInteractorImpl implements IChangeDetailsInteractor, IS
 
                 setAddress(ctx, address);
 
-                listener.onSuccessSet();
+                listener.onSuccessSet(address);
             }
         });
 

@@ -49,7 +49,9 @@ public class ChangeDetailsPresenterImpl implements IChangeDetailsPresenter,
     }
 
     @Override
-    public void onSuccessSet() {
+    public void onSuccessSet(AddressDomain address) {
+
+        detailsView.showSuccessMessage(address);
 
     }
     // -- END NEW ADDRESS -- \\

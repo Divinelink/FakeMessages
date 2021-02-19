@@ -66,7 +66,7 @@ public class MessageRvAdapter extends RecyclerView.Adapter<MessageRvAdapter.Mess
                 totalMessages.get(position).getUserAddress(),
                 totalMessages.get(position).getUserCity()));
 
-        holder.receiverMessageItem.setText(String.format("ΜΕΤΑΚΙΝΗΣΗ %s %s\n%s %s,\n%s",
+        holder.receiverMessageItem.setText(String.format("ΜΕΤΑΚΙΝΗΣΗ %s %s\n%s %s, %s",
                 totalMessages.get(position).getMessageCode(),
                 username[0],
                 username[1],
