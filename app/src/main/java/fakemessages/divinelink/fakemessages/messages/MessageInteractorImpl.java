@@ -54,7 +54,7 @@ public class MessageInteractorImpl implements IMessageInteractor, IGetSharedPref
         });
     }
 
-    public void GenerateRandomEntries(Context ctx, MessagesDao messageDao) {
+    private void GenerateRandomEntries(Context ctx, MessagesDao messageDao) {
 
         SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm");
         SimpleDateFormat dateFormatter = new SimpleDateFormat("EEEEEE, d MMM");
